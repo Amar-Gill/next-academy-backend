@@ -20,14 +20,14 @@ def deaf_aunty(message, name):
         word.islower() for word in words
     ):
         print('WHAT? SPEAK UP!')
-        print([word.islower() for word in words])
+        #print([word.islower() for word in words])
         return False
 
     if all(
         word.isupper() for word in words
     ):
         print('YOU ARE VERY RUDE!')
-        print([word.isupper() for word in words])
+        #print([word.isupper() for word in words])
         return False
 
     print('SHOW SOME RESPECT!')
