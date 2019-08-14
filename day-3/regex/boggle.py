@@ -1,9 +1,10 @@
 import re
 import random
-import string
 
 board = ['_', '_', '_', '_', '_', '_', '_',
          '_', '_', '_', '_', '_', '_', '_', '_', '_']
+
+# board = ['A', 'B', 'C', 'D', 'E', 'Qu', 'F', 'G', 'H', 'I', 'J', 'K','L', 'M', 'N', 'O']
 
 coordinates = set()
 
@@ -30,10 +31,6 @@ dice = [
 
 
 def print_board():
-    # s = '  '.join(s)
-    # regex = r"Q.?"
-    # s = re.sub(regex, r"Qu", s)
-    # print(s)
 
     print('  '.join(board[:4]))
 
@@ -58,7 +55,6 @@ def update_Qu(s):
 
 
 def shake():
-    # letters = string.ascii_uppercase
     for i, char in enumerate(board):
         random_index = int(random.random()*len(dice))
         board[i] = dice[random_index]
@@ -70,11 +66,12 @@ def shake():
 
 shake()
 
+
 game_box = [
-    ''.join(board[0:4]),
-    ''.join(board[4:8]),
-    ''.join(board[8:12]),
-    ''.join(board[12:16]),
+    board[0:4],
+    board[4:8],
+    board[8:12],
+    board[12:16]
 ]
 
 
@@ -83,7 +80,7 @@ def check(word):
     global coordinates
     c = word[0]
     if c == 'Q':
-        c == 'Qu'
+        c = 'Qu'
         recursion_index = 2
     else:
         recursion_index = 1
@@ -94,15 +91,13 @@ def check(word):
         for j, char in enumerate(row):
             if c == char:
                 x, y = j, i
-                print(f"{x}, {y}")
+                # print(f"{x}, {y}")
                 # add to list
                 check_4_real(x, y, word[recursion_index:])
                 coordinates.clear()
     if word_found == False:            
-        # coordinates.clear()
         return False
     else:
-        # coordinates.clear()
         word_found = False
         return True
 
@@ -111,63 +106,48 @@ def check_4_real(x, y, word):
     global word_found
     global coordinates
     coordinates.add((x,y))
-    # print(coordinates)
     #base case - termination
-    # breakpoint()
     if len(word) == 0:
-        if (x,y) in coordinates:
-            # print("HOORAY")
-            word_found = True
-            return True
-        else:
-            return False
+        word_found = True
+        return True
     
     c = word[0]
-    # c = word[1]
     if c == 'Q':
-        c == 'Qu'
+        c = 'Qu'
         recursion_index = 2
     else:
         recursion_index = 1
     # check left
     if x>0:
         if game_box[y][x-1] == c and (x-1,y) not in coordinates:
-            # coordinates.add((x-1,y))
             check_4_real(x-1, y, word[recursion_index:])
     # check right
-    if x < (len(game_box[y])-1):
+    if x <3:
         if game_box[y][x+1] == c and (x+1,y) not in coordinates:
-            # coordinates.add((x+1,y))
             check_4_real(x+1, y, word[recursion_index:])
     # check top
     if y>0:
         if game_box[y-1][x] == c and (x,y-1) not in coordinates:
-            # coordinates.add((x,y-1))
             check_4_real(x, y-1, word[recursion_index:])
     # check bottom
     if y<3:
         if game_box[y+1][x] == c and (x,y+1) not in coordinates:
-            # coordinates.add((x,y+1))
             check_4_real(x, y+1, word[recursion_index:])
     # check top left
     if x>0 and y>0:
         if game_box[y-1][x-1] == c and (x-1,y-1) not in coordinates:
-            # coordinates.add((x-1,y-1))
             check_4_real(x-1,y-1,word[recursion_index:])
     # check bottom left
     if x>0 and y<3:
         if game_box[y+1][x-1] == c and (x-1,y+1) not in coordinates:
-            # coordinates.add((x-1,y+1))
             check_4_real(x-1,y+1,word[recursion_index:])
     # check top right
-    if x < (len(game_box[y]) - 1) and y>0:
+    if x < 3 and y>0:
         if game_box[y-1][x+1] == c and (x+1,y-1) not in coordinates:
-            # coordinates.add((x+1,y-1))
             check_4_real(x+1,y-1,word[recursion_index:])
     # check bottom right
-    if x < (len(game_box[y])-1) and y < 3:
+    if x < 3 and y < 3:
         if game_box[y+1][x+1] == c and (x+1,y+1) not in coordinates:
-            # coordinates.add((x+1,y+1))
             check_4_real(x+1,y+1,word[recursion_index:])
 
     return False
