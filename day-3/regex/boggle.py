@@ -96,9 +96,7 @@ def check(word):
                 x, y = j, i
                 print(f"{x}, {y}")
                 # add to list
-                # coordinates.add((x,y))
                 check_4_real(x, y, word[recursion_index:])
-                # check_4_real(x, y, word)
                 coordinates.clear()
     if word_found == False:            
         # coordinates.clear()
@@ -112,20 +110,18 @@ def check(word):
 def check_4_real(x, y, word):
     global word_found
     global coordinates
-    
-    print(coordinates)
+    coordinates.add((x,y))
+    # print(coordinates)
     #base case - termination
     # breakpoint()
-    if len(word) == 1:
-        if (x,y) not in coordinates:
+    if len(word) == 0:
+        if (x,y) in coordinates:
             # print("HOORAY")
             word_found = True
             return True
-        elif (x,y) in coordinates:
-            return False
         else:
             return False
-    coordinates.add((x,y))
+    
     c = word[0]
     # c = word[1]
     if c == 'Q':
