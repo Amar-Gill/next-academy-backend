@@ -3,15 +3,18 @@ class Hospital():
     def __init__(self, name, location):
         self.name = name
         self.location = location
-        self.employees = []
+        self.employees = {}
         self.usernames = []
         self.passwords = []
-        self.patients = []
+        self.patients = {}
 
     def add_employee(self, employee):
-        self.employees.append(employee)
+        self.employees[employee.username] = employee
         self.usernames.append(employee.username)
         self.passwords.append(employee.password)
+
+    def add_patient(self, patient):
+        self.patients[patient.id] = patient
 
     
     #show wards
