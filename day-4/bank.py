@@ -1,7 +1,10 @@
 class Account():
-    def __init__(self, number, owner, balance, rate):
+    id = 0
+    def __init__(self, owner, balance, rate):
+        Account.id +=1
+        accountnum = Account.id
         self.owner = owner.name
-        self.number = number
+        self.account_number = accountnum
         self.balance = balance.value
         self.currency = balance.currency
         self.rate = rate/100
@@ -50,6 +53,6 @@ amar = Holder('Amar')
 
 sum = Money('RM',9001)
 
-amar_account = Account(545, amar, sum, 6)
+amar_account = Account(amar, sum, 6)
 
 breakpoint()

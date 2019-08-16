@@ -61,6 +61,8 @@ macbook = Product('MacBook', 'electronics', 'Apple', 1750)
 zenbook = Product('ZenBook', 'electronics', 'Asus', 1450)
 XPS13 = Product('XPS13', 'electronics', 'Dell', 1200)
 
+p_list = [macbook, zenbook, XPS13]
+
 warehouse1 = WareHouse(1, 'Mississauga')
 
 warehouse1.add_product(macbook)
