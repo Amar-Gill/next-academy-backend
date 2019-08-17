@@ -14,7 +14,7 @@ class Hospital():
         self.passwords.append(employee.password)
 
     def add_patient(self, patient):
-        self.patients[patient.id] = patient
+        self.patients[patient.patient_id] = patient
 
     
     #show wards

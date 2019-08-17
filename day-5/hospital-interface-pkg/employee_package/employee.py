@@ -30,7 +30,18 @@ class Custodian(Employee):
         Employee.__init__(self, name, username, password)
 
 class Patient():
-    def __init__(self, id, ward):
-        self.id = id
+    idnum = 0
+    def __init__(self, ward):
+        Patient.idnum += 1
+        z = Patient.idnum
+        self.patient_id = z
         self.ward = ward
-        self.records = []
+        self.records = {}
+
+class PatientRecord():
+    idnum = 0
+    def __init__(self, record_description):
+        PatientRecord.idnum += 1
+        z = PatientRecord.idnum
+        self.record_id = z
+        self.record_description = record_description
