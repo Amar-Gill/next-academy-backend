@@ -1,0 +1,13 @@
+SELECT location, COUNT(voter_id)
+FROM congress_members JOIN votes ON congress_members.id = politician_id
+GROUP BY location ORDER BY COUNT(voter_id) DESC LIMIT 10;
+SELECT location, first_name, last_name
+FROM votes
+JOIN congress_members on congress_members.id = politician_id
+JOIN voters ON voters.id = voter_id
+GROUP BY location ORDER BY COUNT(voter_id) DESC;
+SELECT location, first_name, last_name
+FROM votes
+JOIN congress_members on congress_members.id = politician_id
+JOIN voters ON voters.id = voter_id
+GROUP BY voter_id ORDER BY voter_id;

@@ -1,0 +1,58 @@
+Retrieve all the warehouses for the *store you created in the previous lesson (use join)
+
+>>> [w for w in Warehouse.select().join(Store).where(Store.id == 1)]
+[<Warehouse: 1>, <Warehouse: 2>]
+
+Retrieve all the products for the *store you created in the previous lesson (use join)
+
+>>> [p.name for p in Product.select().join(Warehouse).where(Warehouse.store_id == 1)]
+['Cool Mug', 'Mug of Ages']
+
+For the only product in your database, retrieve the warehouse it belongs to (use join)
+
+>>> [w.location for w in Warehouse.select().join(Product).where(Product.warehouse_id ==1)]
+['Illinois', 'Illinois']
+
+For the only product in your database, retrieve which store it belongs to (use join)
+
+>>> [s.name for s in Store.select().join(Warehouse).where(Warehouse.id == 1)]
+["Mug's Galore"]
+
+Update the product name
+
+>>> [(p.id, p.name) for p in Product]
+[(1, 'Cool Mug'), (2, 'Mug of Ages')]
+>>> new_name = 'Ultra Mug'
+>>> Query = Product.update(name = new_name).where(Product.id == 1)
+>>> Query.execute()
+1
+>>> [(p.id, p.name) for p in Product]
+[(1, 'Ultra Mug'), (2, 'Mug of Ages')]
+
+A product was sold, delete the product
+
+>>> [p.name for p in Product]
+['Ultra Mug', 'Mug of Ages']
+>>> [p.id for p in Product]
+[1, 2]
+>>> query = Product.delete().where(Product.id == 1)
+>>> query.execute()
+1
+>>> [p.name for p in Product]
+['Mug of Ages']
+>>> [p.id for p in Product]
+[2]
+
+Business isn't going well, delete a warehouse
+
+>>> [w.location for w in Warehouse]
+['Illinois', 'Quebec']
+>>> [w.id for w in Warehouse]
+[1, 2]
+>>> query = Warehouse.delete().where(Warehouse.id == 2)
+>>> query.execute()
+1
+>>> [w.location for w in Warehouse]
+['Illinois']
+>>> [w.id for w in Warehouse]
+[1]

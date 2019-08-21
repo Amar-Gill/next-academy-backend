@@ -1,0 +1,234 @@
+SELECT voter_id, location, first_name, last_name, COUNT(voter_id)
+FROM votes
+JOIN voters ON voters.id = voter_id
+JOIN congress_members ON congress_members.id = politician_id
+GROUP BY voter_id
+HAVING COUNT(voter_id)>2 AND location = 'NY';
+
+FROM voters
+ JOIN votes ON voters.id = voter_id
+ JOIN congress_members ON congress_members.id = politician_id
+ GROUP BY voter_id, name
+ HAVING politician_id = congress_members.id AND COUNT(votes.id)>1;
+
+
+//select voters not in repub or demo who only voted once:
+
+SELECT voter_id
+FROM voters
+JOIN votes ON voters.id = voter_id
+WHERE party NOT IN ('republican', 'democrat')
+GROUP BY voter_id
+HAVING COUNT(voter_id) = 1;
+
+DELETE FROM voters (SELECT voter_id
+FROM voters
+JOIN votes ON voters.id = voter_id
+WHERE party NOT IN ('republican', 'democrat')
+GROUP BY voter_id
+HAVING COUNT(voter_id) = 1);
+
+USE THESE IDS BELOW:
+45, 46, 63, 65,66, 100, 106, 135, 147, 162
+216
+219
+221
+229
+238
+244
+251
+287
+288
+293
+412
+415
+434
+462
+501
+506
+519
+546
+555
+560
+603
+623
+627
+659
+675
+703
+704
+706
+744
+760
+815
+825
+838
+906
+919
+957
+988
+1014
+1066
+1071
+1141
+1178
+1206
+1291
+1313
+1331
+1364
+1377
+1418
+1430
+1439
+1453
+1472
+1480
+1501
+1508
+1551
+1578
+1586
+1605
+1700
+1708
+1770
+1830
+1859
+1872
+1901
+1928
+1970
+1993
+2000
+2013
+2030
+2060
+2110
+2112
+2161
+2169
+2192
+2254
+2264
+2270
+2298
+2315
+2318
+2341
+2357
+2359
+2371
+2408
+2415
+2430
+2436
+2455
+2472
+2485
+2505
+2511
+2525
+2531
+2534
+2561
+2620
+2638
+2667
+2715
+2732
+2745
+2762
+2782
+2783
+2807
+2832
+2874
+2891
+2909
+3046
+3127
+3156
+3217
+3231
+3233
+3235
+3246
+3303
+3333
+3337
+3348
+3355
+3371
+3422
+3424
+3425
+3441
+3448
+3491
+3500
+3523
+3537
+3638
+3667
+3676
+3738
+3803
+3804
+3808
+3847
+3863
+3877
+3903
+3948
+3957
+3971
+3976
+4015
+4086
+4098
+4131
+4154
+4163
+4166
+4187
+4205
+4220
+4239
+4278
+4279
+4283
+4286
+4316
+4328
+4341
+4347
+4406
+4439
+4445
+4449
+4456
+4481
+4491
+4506
+4510
+4551
+4557
+4593
+4614
+4624
+4631
+4643
+4670
+4760
+4818
+4820
+4821
+4845
+4881
+4887
+4901
+4919
+4962
+4978
+5000
