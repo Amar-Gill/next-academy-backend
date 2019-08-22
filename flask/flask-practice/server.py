@@ -1,9 +1,10 @@
 from flask import Flask, render_template
 app = Flask(__name__)
 
-@app.route("/") # Revisit decorators if you unclear of this syntax
-def index():
-    return render_template('index.html')
+@app.route("/<name>") # Revisit decorators if you unclear of this syntax
+def index(name):
+    name = name.upper()
+    return render_template('index.html', name=name)
 
 @app.route('/user/<username>')
 def show(username):
