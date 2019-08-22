@@ -14,6 +14,7 @@ db.create_tables([Todo])
 
 app = Flask(__name__)
 
+#when GET request is received from server at /
 @app.route('/', methods=["GET"])
 def index():
     todos =Todo.select()
