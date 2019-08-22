@@ -6,7 +6,15 @@
  </head>
 
  <body>
-   <h1>Hello, {{name}}</h1>
-   <img src="../static/hello.jpg" />
+    {% if signed_in %}
+        <h1>Welcome Back</h1>
+        <input type='button' value='Sign Out'/>
+    {% else %}
+        <h1>Hello Stranger!</h1>
+        <input type='button' value='Sign In'/>
+        <input type='button' value='Sign Up'/>
+    {% endif %}
+        
+   <img src="../static/hello.jpg" style='width: 200px' />
  </body>
 </html>
