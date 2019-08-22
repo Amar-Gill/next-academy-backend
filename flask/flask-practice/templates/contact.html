@@ -1,5 +1,24 @@
 {% extends "main.html" %}
 {% block content %}
-    <h1>Contact us</h1>
-    <img src="../static/contact.jpg" style='width: 200px' />
+<h1>Contact us</h1>
+<form action="{{url_for('index')}}">
+    <div class="form-group">
+        <label for="first_name">First Name:</label>
+        <input type='text' name='first_name' class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email:</label>
+        <input type='text' name='email' class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label for="question">How can we help you?</label>
+        <textarea type='text' name='question' class="form-control" rows="3">
+                    </textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+<img src="../static/contact.jpg" style='width: 200px' />
 {% endblock %}

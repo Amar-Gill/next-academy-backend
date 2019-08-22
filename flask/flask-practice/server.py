@@ -1,10 +1,11 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 app = Flask(__name__)
 
 @app.route("/") # Revisit decorators if you unclear of this syntax
 def index():
     signed_in = False
-    return render_template('index.html', signed_in=signed_in)
+    first_name = request.args.get('first_name')
+    return render_template('index.html', signed_in=signed_in, first_name=first_name)
 
 @app.route('/user/<username>')
 def show_username(username):
